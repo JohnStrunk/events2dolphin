@@ -101,7 +101,7 @@ def parse_scb(path: str) -> List[Event]:
     Returns:
       An Event corresponding to the start list file
     """
-    scb = open(path, "r")
+    scb = open(path, "r", encoding="utf-8", errors="ignore")
     lines = scb.readlines()
     scb.close()
     if (len(lines)-1) % 10:
