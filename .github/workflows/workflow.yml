@@ -1,0 +1,121 @@
+name: "Build"
+
+on:
+  push:
+    branches: [master]
+    tags: ["*"]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [master]
+  schedule:
+    - cron: '43 16 * * 5'
+
+jobs:
+  build-x64:
+    name: Build x86-64
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        # https://github.com/actions/checkout
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        # https://github.com/actions/setup-python
+        uses: actions/setup-python@98f2ad02fd48d057ee3b4d4f66525b231c3e52b6
+        with:
+          cache: 'pip'
+          architecture: 'x64'
+          #python-version: '3.10'
+
+      - name: Install dependencies
+        shell: cmd
+        run: pip install --upgrade -r requirements.txt
+
+      - name: Run tests
+        shell: cmd
+        run: pytest -v
+
+      - name: Build executable
+        shell: cmd
+        run: pyinstaller --onefile --distpath=. --workpath=build --version-file=events2dolphin.version events2dolphin.py
+
+      - name: Save executable as artifact
+        # https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
+        with:
+          name: events2dolphin.exe
+          path: events2dolphin.exe
+          if-no-files-found: error
+
+  build-x86:
+    name: Build x86
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        # https://github.com/actions/checkout
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        # https://github.com/actions/setup-python
+        uses: actions/setup-python@98f2ad02fd48d057ee3b4d4f66525b231c3e52b6
+        with:
+          #cache: 'pip'
+          architecture: 'x86'
+          # Python 3.4 is the last for WinXP
+          # Pythin 3.8 is the last for Win7
+          python-version: '3.8'
+
+      - name: Install dependencies
+        shell: cmd
+        run: |
+          pip install wheel
+          pip install --upgrade -r requirements-x86.txt
+
+      - name: Build executable
+        shell: cmd
+        run: pyinstaller --onefile --distpath=. --workpath=build --version-file=events2dolphin.version --name=events2dolphin-x86 events2dolphin.py
+
+      - name: Save executable as artifact
+        # https://github.com/actions/upload-artifact
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
+        with:
+          name: events2dolphin-x86.exe
+          path: events2dolphin-x86.exe
+          if-no-files-found: error
+
+  release:
+    name: Publish release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build-x86, build-x64]
+    runs-on: windows-latest
+
+    steps:
+      - name: Download x86 executable as artifact
+        # https://github.com/actions/download-artifact
+        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 
+        with:
+          name: events2dolphin-x86.exe
+          path: events2dolphin-x86.exe
+
+      - name: Download x64 executable as artifact
+        # https://github.com/actions/download-artifact
+        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 
+        with:
+          name: events2dolphin.exe
+          path: events2dolphin.exe
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        # https://github.com/softprops/action-gh-release
+        uses: softprops/action-gh-release@1e07f4398721186383de40550babbdf2b84acfc5
+        with:
+          draft: true
+          files: |
+            events2dolphin-x86.exe
+            events2dolphin.exe
