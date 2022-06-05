@@ -7,6 +7,13 @@ a format that can be imported by CTS Dolphin software.
 
 Download the [latest release of
 `events2dolphin.exe`](https://github.com/JohnStrunk/events2dolphin/releases)
+from the releases page.
+- `events2dolphin.exe` is built for 64-bit architectures and should run on
+  Windows 8 and later
+- `events2dolphin-x86.exe` is a 32-bit version that can be run on Windows 7  
+  :exclamation: Due to Python dropping support for older versions of Windows,
+  this must be built with Python 3.8 and associated libraries. Please use the
+  64-bit version if possible. :exclamation:
 
 ## :book: Instructions :book:
 
@@ -47,6 +54,12 @@ Changelog](https://keepachangelog.com/en/1.0.0/)
 This project follows [Semantic Versioning](https://semver.org/)
 
 ## [Unreleased]
+
+## [0.5.2] - 2022-06-05
+
+### Added
+
+- Include a 32-bit build for users still on Windows 7
 
 ## [0.5.1] - 2021-07-05
 

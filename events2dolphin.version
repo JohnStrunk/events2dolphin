@@ -5,8 +5,8 @@
 VSVersionInfo(
   ffi=FixedFileInfo(
     # Version number: X, Y, Z, 0
-    filevers=(0, 5, 0, 0),
-    prodvers=(0, 5, 0, 0),
+    filevers=(0, 5, 2, 0),
+    prodvers=(0, 5, 2, 0),
     # Contains a bitmask that specifies the valid bits 'flags'r
     mask=0x0,
     # Contains a bitmask that specifies the Boolean attributes of the file.
@@ -32,8 +32,8 @@ VSVersionInfo(
         StringStruct(u'FileDescription', u'Converts a CTS start list to a Dolphin CSV'),
         StringStruct(u'LegalCopyright', u'Copyright ©2020 John D. Strunk'),
         StringStruct(u'LegalTrademarks', u'Licensed under GNU Affero General Public License v3 or later'),
-        StringStruct(u'FileVersion', u'v0.5.0'),
-        StringStruct(u'ProductVersion', u'v0.5.0'),
+        StringStruct(u'FileVersion', u'v0.5.2'),
+        StringStruct(u'ProductVersion', u'v0.5.2'),
         StringStruct(u'InternalName', u'events2dolphin.py'),
         StringStruct(u'OriginalFilename', u'https://github.com/JohnStrunk/events2dolphin')
         ])
