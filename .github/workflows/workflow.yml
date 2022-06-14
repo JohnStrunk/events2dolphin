@@ -24,11 +24,11 @@ jobs:
 
       - name: Set up Python
         # https://github.com/actions/setup-python
-        uses: actions/setup-python@98f2ad02fd48d057ee3b4d4f66525b231c3e52b6
+        uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb
         with:
           cache: 'pip'
           architecture: 'x64'
-          #python-version: '3.10'
+          python-version: '3.*'
 
       - name: Install dependencies
         shell: cmd
@@ -63,7 +63,7 @@ jobs:
 
       - name: Set up Python
         # https://github.com/actions/setup-python
-        uses: actions/setup-python@98f2ad02fd48d057ee3b4d4f66525b231c3e52b6
+        uses: actions/setup-python@d09bd5e6005b175076f227b13d9730d56e9dcfcb
         with:
           #cache: 'pip'
           architecture: 'x86'
