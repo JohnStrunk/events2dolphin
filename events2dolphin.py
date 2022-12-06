@@ -129,7 +129,7 @@ def eventlist_to_csv(events: List[Event]) -> List[str]:
         lines.append(f"{e.event_number},{e.event_name},{e.num_heats},1,A\n")
     return lines
 
-def main():
+def main() -> None:
     """This is the main function."""
     if len(sys.argv) < 2:
         usage()
