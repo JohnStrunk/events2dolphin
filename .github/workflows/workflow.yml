@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout repository
         # https://github.com/actions/checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Checkout repository
         # https://github.com/actions/checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
 
