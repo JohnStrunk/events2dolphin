@@ -98,13 +98,13 @@ jobs:
     steps:
       - name: Download x86 executable as artifact
         # https://github.com/actions/download-artifact
-        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e 
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 
         with:
           name: events2dolphin-x86.exe
 
       - name: Download x64 executable as artifact
         # https://github.com/actions/download-artifact
-        uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e 
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 
         with:
           name: events2dolphin.exe
 
