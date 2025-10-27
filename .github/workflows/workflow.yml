@@ -44,7 +44,7 @@ jobs:
 
       - name: Save executable as artifact
         # https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         with:
           name: events2dolphin.exe
           path: events2dolphin.exe
@@ -83,7 +83,7 @@ jobs:
 
       - name: Save executable as artifact
         # https://github.com/actions/upload-artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         with:
           name: events2dolphin-x86.exe
           path: events2dolphin-x86.exe
